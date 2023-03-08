@@ -72,3 +72,14 @@
   max-width: 1200px;
   flex-wrap: wrap;
 }
+
+@font-face {
+  font-family: "Phoenix";
+  src: local("Phoenix Gaming"),
+    url("./font/Phoenix Gaming.ttf") format("truetype");
+}
+
+.ethAddress{
+  font-family:Phoenix ;
+  font-size: larger;
+}

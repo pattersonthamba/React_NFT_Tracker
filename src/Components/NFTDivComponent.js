@@ -1,8 +1,9 @@
 import React , {Component} from 'react';
 import {Card} from "react-bootstrap";
 import ModalPlaceHolder from '../Components/ModalComponent.js';
-import '../Components/modal.css';
 import not_found from './simple-image-not-found-icons.png';
+import "../Components/modal.css";
+import '../font/mandalore.ttf';
 
 
 class NFTDivComponent extends Component {
@@ -37,6 +38,14 @@ class NFTDivComponent extends Component {
    }
   }
 
+  truncate = str => {
+    if(str === undefined || str !== "" || str == null || str !== " "){
+      return str;
+    }else{
+      return str.length > 10 ? str.substring(0, 9) + "..." : str;
+    }
+  }
+
   showModal = e => {
     this.setState({
       show: !this.state.show
@@ -50,7 +59,7 @@ class NFTDivComponent extends Component {
     }}>
       <Card.Img className={"card-img"} width="100px" height="100px" src={this.state.image} alt="Not Found"></Card.Img>
       <Card.Body className={"card"}>
-      <Card.Title><strong>{this.props.data.contract.name} #{this.props.data.tokenId}</strong></Card.Title>
+      <Card.Title><strong className="mandfont">{this.props.data.contract.name} #{this.truncate(this.props.data.tokenId)}</strong></Card.Title>
       <ModalPlaceHolder onClose={this.showModal} show={this.state.show} propData={this.props}>
         </ModalPlaceHolder>
         </Card.Body>

@@ -6,6 +6,7 @@ import NFTDivComponent from './Components/NFTDivComponent';
 import {Network , Alchemy} from 'alchemy-sdk';
 import logo from './logo_1.png';
 import './App.css';
+import './font/Phoenix Gaming.ttf';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -50,15 +51,15 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} width="230px" height="100px" className="App-logo" alt="logo" />
-          <p>
-             Enter ETH address:<input type="text" id="eth_address" onChange={handleChange}></input> 
+          <p className='ethAddress'>
+             Enter ETH address : <input type="text" id="eth_address" onChange={handleChange}></input> 
           </p>
         </header>
           <body>
           <Grid container spacing={2}>
         {data1.map((data , index) => {
           return(
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <Item><NFTDivComponent data={data} index={index}></NFTDivComponent></Item>
             </Grid>
           );

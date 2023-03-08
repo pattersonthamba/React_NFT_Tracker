@@ -1,9 +1,11 @@
 import React from "react";
-import "../Components/modal.css";
 import PropTypes from "prop-types";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
+import "../Components/modal.css";
+import '../font/mandalore.ttf';
 
 const style = {
   position: 'relative',
@@ -33,24 +35,33 @@ export default class ModalPlaceHolder extends React.Component {
     this.props.onClose && this.props.onClose(e);
   };
 
+  truncate = str => {
+    if(str === undefined || str !== "" || str == null || str !== " "){
+      return str;
+    }else{
+      return str.length > 10 ? str.substring(0, 9) + "..." : str;
+    }
+  }
+
   render() {
     if (!this.props.show) {
       return null;
     }
     return (
       <Box sx={style}>
+        <Button onClick={this.onClose} className="mandfont">
+          <CancelPresentationIcon> Close </CancelPresentationIcon>
+          </Button>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-          <h2>{this.props.propData.data.contract.name} #{this.props.propData.data.tokenId}</h2>
+          <h2 className="mandfont">{this.truncate(this.props.propData.data.contract.name)} #{this.truncate(this.props.propData.data.tokenId)}</h2>
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <div class="content">Description : {this.props.propData.data.description}</div>
-        <div class="content">Check on Opensea : <a href={this.openseaLink} target="_blank" rel="noreferrer">
+          <div className="mandfont">Description : {this.props.propData.data.description}</div>
+        <div className="mandfont">Check on Opensea : <a href={this.openseaLink} target="_blank" rel="noreferrer">
         <img width="20px" height="20px" src="https://opensea.io/static/images/logos/opensea.svg" alt="Test"></img>
         </a></div>
           </Typography>
-          <Button onClick={this.onClose}>
-            Close
-          </Button>
+          
         </Box>
     );
   }
